@@ -47,4 +47,7 @@ public abstract class HillClimbSearch extends Search {
 
     @Override
     public abstract List<State> run();
+
+    @Override
+    public abstract boolean isSuccessFul(List<State> nextStates);
 }

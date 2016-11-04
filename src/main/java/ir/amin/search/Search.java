@@ -44,4 +44,6 @@ public abstract class Search {
     }
 
     public abstract List<State> run();
+
+    public abstract boolean isSuccessFul(List<State> nextStates);
 }
