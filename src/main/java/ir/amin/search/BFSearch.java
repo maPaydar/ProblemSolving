@@ -37,4 +37,9 @@ public class BFSearch extends Search {
         }
         return null;
     }
+
+    @Override
+    public boolean isSuccessFul(List<State> nextStates) {
+        return false;
+    }
 }
