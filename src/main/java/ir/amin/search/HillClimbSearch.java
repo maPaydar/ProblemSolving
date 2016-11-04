@@ -49,5 +49,9 @@ public abstract class HillClimbSearch extends Search {
     public abstract List<State> run();
 
     @Override
-    public abstract boolean isSuccessFul(List<State> nextStates);
+    public boolean isSuccessFul(List<State> nextStates) {
+        if(nextStates.size() == 0)
+            return false;
+        return this.getCostFunction().costFunction(nextStates.get(nextStates.size() - 1)) == 0;
+    }
 }
