@@ -77,7 +77,7 @@ public class EightQueens {
             ArrayList<State> nextStates = new ArrayList<State>();
             ArrayList<Integer> currnetBoard = (ArrayList<Integer>) currentState.getValue();
             int i = random.nextInt(8);
-            int j = random.nextInt(8);
+            int j = random.nextInt(7) + 1;
             int row = currnetBoard.get(i);
             int newRow = row + j;
             if (newRow > 7 && newRow % 7 != 0) {
@@ -104,17 +104,15 @@ public class EightQueens {
     public EightQueens() {
         State<List<Integer>> initialState = new State<>(this.generateBoard());
         for (int t = 0; t < 500; t++) {
-            /*
             HCFirstBest hcFirstBest =
                     new HCFirstBest(initialState, this.goalFormul, this.cost, this.hcFirstBestSuccessor);
-
             HCSteepestDescent hcSteepestDescent =
                     new HCSteepestDescent(initialState, this.goalFormul, this.cost, this.hcSteepestDescentSuccessor);
-            */
             HCRandomRestart hcRandomRestart =
                    new HCRandomRestart(initialState, this.goalFormul, this.cost, this.hcRandomRestartSuccessor);
-
-            System.out.println(solve(hcRandomRestart));
+            SimulatedAnnealingSearch simulatedAnnealingSearch =
+                    new SimulatedAnnealingSearch(initialState, this.goalFormul, this.cost, this.hcFirstBestSuccessor, 28, 0.0001);
+            System.out.println(solve(simulatedAnnealingSearch));
         }
 
     }
