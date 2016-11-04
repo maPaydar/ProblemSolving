@@ -45,4 +45,9 @@ public class HCSteepestDescent extends HillClimbSearch {
         return nextStates;
     }
 
+    public boolean isSuccessFul(List<State> nextStates) {
+        if(nextStates.size() == 0)
+            return false;
+        return this.getCostFunction().costFunction(nextStates.get(nextStates.size() - 1)) == 0;
+    }
 }
