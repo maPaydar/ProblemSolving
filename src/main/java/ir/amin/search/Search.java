@@ -18,6 +18,7 @@ public abstract class Search {
 
     public Search(State initialState, GoalFormul goalFormul) {
         this.initialState = initialState;
+        this.currentState = initialState;
         this.goalFormul = goalFormul;
         this.pathToGoal = new ArrayList<>();
     }
