@@ -49,7 +49,7 @@ public class Test {
         Agent<String> agent = new Agent<>(n, goalFormul);
         agent.act(null);
 
-
+        /*
         Search hill = new HillClimbSearch(new State("a"), new GoalFormul() {
             @Override
             public boolean isGoal(State t) {
@@ -70,7 +70,7 @@ public class Test {
                 }
                 return cost;
             }
-        });
+        });*/
 
         System.out.println(hillFirstBest(new ArrayList<Integer>() {{
             for(int i = 0; i < 8; i++) {
