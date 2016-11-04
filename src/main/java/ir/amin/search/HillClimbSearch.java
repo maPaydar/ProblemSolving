@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * Created by Amin on 04/11/2016.
  */
-public class HillClimbSearch extends Search {
+public abstract class HillClimbSearch extends Search {
 
-    private ICost iCostFucntion;
+    private ICost iCostFunction;
     private ISuccessor iSuccessor;
 
 
@@ -18,18 +18,33 @@ public class HillClimbSearch extends Search {
         super(initialState, goalFormul);
     }
 
-    public HillClimbSearch(State initialState, GoalFormul goalFormul, ICost iCostFucntion) {
+    public HillClimbSearch(State initialState, GoalFormul goalFormul, ICost iCostFunction) {
         super(initialState, goalFormul);
-        this.iCostFucntion = iCostFucntion;
+        this.iCostFunction = iCostFunction;
     }
 
-    public void setICostFucntion(ICost iCostFucntion) {
-        this.iCostFucntion = iCostFucntion;
+    public HillClimbSearch(State initialState, GoalFormul goalFormul, ICost iCostFunction, ISuccessor iSuccessor) {
+        super(initialState, goalFormul);
+        this.iCostFunction = iCostFunction;
+        this.iSuccessor = iSuccessor;
+    }
+
+    public void setCostFunction(ICost iCostFunction) {
+        this.iCostFunction = iCostFunction;
+    }
+
+    public ICost getCostFunction() {
+        return iCostFunction;
+    }
+
+    public void setSuccessor(ISuccessor iSuccessor) {
+        this.iSuccessor = iSuccessor;
+    }
+
+    public ISuccessor getSuccessor() {
+        return iSuccessor;
     }
 
     @Override
-    public List<State> run() {
-
-        return null;
-    }
+    public abstract List<State> run();
 }
