@@ -28,12 +28,12 @@ public class HCRandomRestart extends HillClimbSearch {
         List<State> successor = null;
         State nextState = null;
         List<State> nextStates = new ArrayList<>();
-        while (this.getCostFunction().costFunction(this.getCurrentState()) != 0) {
-            successor = this.getSuccessor().successor(this.getCurrentState());
+        while (getCostFunction().costFunction(getCurrentState()) != 0) {
+            successor = getSuccessor().successor(getCurrentState());
             nextState = successor.get(0);
-            if(this.getCostFunction().costFunction(nextState) < this.getCostFunction().costFunction(this.getCurrentState())) {
+            if(getCostFunction().costFunction(nextState) < getCostFunction().costFunction(getCurrentState())) {
                 nextStates.add(nextState);
-                this.setCurrentState(nextState);
+                setCurrentState(nextState);
             }
         }
         return nextStates;

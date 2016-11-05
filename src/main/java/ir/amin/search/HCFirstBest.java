@@ -27,15 +27,17 @@ public class HCFirstBest extends HillClimbSearch {
     @Override
     public List<State> run() {
         List<State> successor = null;
-        State nextState = null;
+        State nextState;
         List<State> nextStates = new ArrayList<>();
-        while (this.getCostFunction().costFunction(this.getCurrentState()) != 0) {
-            successor = this.getSuccessor().successor(this.getCurrentState());
-            nextState = successor.get(0);
-            if(this.getCostFunction().costFunction(nextState) < this.getCostFunction().costFunction(this.getCurrentState())) {
-                nextStates.add(nextState);
-                this.setCurrentState(nextState);
-            }
+        while (getCostFunction().costFunction(getCurrentState()) != 0) {
+            do {
+                successor = getSuccessor().successor(getCurrentState());
+                nextState = successor.get(0);
+                //System.out.println("fuck : " + nextState.getValue());
+            } while (getCostFunction().costFunction(nextState) >= getCostFunction().costFunction(getCurrentState()));
+            System.out.println("next state : " + nextState.getValue());
+            nextStates.add(nextState);
+            setCurrentState(nextState);
         }
         return nextStates;
     }
