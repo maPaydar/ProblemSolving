@@ -35,6 +35,10 @@ public abstract class Search {
         return initialState;
     }
 
+    public void setInitialState(State initialState) {
+        this.initialState = initialState;
+    }
+
     public State getCurrentState() {
         return currentState;
     }
