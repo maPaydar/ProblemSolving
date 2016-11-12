@@ -39,7 +39,6 @@ public class HCSteepestDescent extends HillClimbSearch {
             if(nextState == null) {
                 break;
             }
-            System.out.println(nextState.getValue().toString() + " " + this.getCostFunction().costFunction(nextState));
             nextStates.add(nextState);
             this.setCurrentState(nextState);
         }

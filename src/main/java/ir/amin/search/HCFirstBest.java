@@ -11,38 +11,44 @@ import java.util.List;
  */
 public class HCFirstBest extends HillClimbSearch {
 
+    private int maxNextStateNumbers;
+    private List<State> generatedStates = new ArrayList<State>();
 
-    public HCFirstBest(State initialState, GoalFormul goalFormul) {
+    public HCFirstBest(State initialState, GoalFormul goalFormul, int maxNextStateNumbers) {
         super(initialState, goalFormul);
+        this.maxNextStateNumbers = maxNextStateNumbers;
     }
 
-    public HCFirstBest(State initialState, GoalFormul goalFormul, ICost iCostFunction) {
+    public HCFirstBest(State initialState, GoalFormul goalFormul, ICost iCostFunction, int maxNextStateNumbers) {
         super(initialState, goalFormul, iCostFunction);
+        this.maxNextStateNumbers = maxNextStateNumbers;
     }
 
-    public HCFirstBest(State initialState, GoalFormul goalFormul, ICost iCostFunction, ISuccessor iSuccessor) {
+    public HCFirstBest(State initialState, GoalFormul goalFormul, ICost iCostFunction, ISuccessor iSuccessor, int maxNextStateNumbers) {
         super(initialState, goalFormul, iCostFunction, iSuccessor);
+        this.maxNextStateNumbers = maxNextStateNumbers;
     }
 
     @Override
     public List<State> run() {
         List<State> successor = null;
         State nextState;
-        int iterator = 0;
         List<State> nextStates = new ArrayList<>();
         while (getCostFunction().costFunction(getCurrentState()) != 0) {
-            System.out.println(iterator);
-            nextState = getSuccessor().successor(getCurrentState()).get(0);
-            System.out.println(getCurrentState().getValue() + " " + getCostFunction().costFunction(getCurrentState()));
-            if (getCostFunction().costFunction(nextState) >= getCostFunction().costFunction(getCurrentState())) {
-                if (iterator > 56)
-                    return new ArrayList<State>();
-                iterator++;
+            successor = getSuccessor().successor(getCurrentState());
+            nextState = successor.get(0);
+            if (generatedStates.contains(nextState)) {
                 continue;
             }
-            iterator = 0;
-            nextStates.add(nextState);
-            setCurrentState(nextState);
+            generatedStates.add(nextState);
+            if (getCostFunction().costFunction(nextState) < getCostFunction().costFunction(getCurrentState())) {
+                generatedStates.clear();
+                nextStates.add(nextState);
+                setCurrentState(nextState);
+            }
+            if (generatedStates.size() == maxNextStateNumbers) {
+                break;
+            }
         }
         return nextStates;
     }

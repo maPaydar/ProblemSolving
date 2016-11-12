@@ -41,27 +41,23 @@ public class SimulatedAnnealingSearch extends HillClimbSearch {
         int delta;
         double determine;
         State nextState;
-
         while (getCostFunction().costFunction(getCurrentState()) != 0 && temperature > 0) {
-
-            nextState = getSuccessor().successor(getCurrentState()).get(0);
-            //nodesGenerated++;
-
+            try {
+                nextState = getSuccessor().successor(getCurrentState()).get(0);
+            } catch (NullPointerException e) {
+                return new ArrayList<State>();
+            }
             if (getCostFunction().costFunction(nextState) == 0) {
                 nextStates.add(nextState);
                 return nextStates;
             }
-
             delta = getCostFunction().costFunction(getCurrentState()) - getCostFunction().costFunction(nextState);
-
-            if (delta > 0) { //currentNode has a higher heuristic
+            if (delta > 0) {
                 setCurrentState(nextState);
             } else {
                 probability = Math.exp(delta / temperature);
-                //Do we want to choose nextNode or stick with currentNode?
                 determine = Math.random();
-
-                if (determine <= probability) { //choose nextNode
+                if (determine <= probability) {
                     setCurrentState(nextState);
                 }
             }
