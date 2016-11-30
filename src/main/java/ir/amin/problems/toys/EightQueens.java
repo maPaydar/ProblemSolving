@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import jxl.write.WriteException;
 
 /**
  * Created by Amin on 04/11/2016.
@@ -128,7 +125,7 @@ public class EightQueens {
         }
     };
 
-    public EightQueens() throws IOException, WriteException {
+    public EightQueens() throws IOException {
         State<List<Integer>> initialState;
         int hcfbSuccess = 0;
         int hcsdSuccess = 0;
@@ -199,7 +196,7 @@ public class EightQueens {
         return al;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
       
         EightQueens eightQueens = new EightQueens();
         
